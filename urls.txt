@@ -1,0 +1,44 @@
+// login api  <POST>
+http://localhost:5000/api/v1/login
+
+// register api <POST>
+http://localhost:5000/api/v1/login/register
+
+// profile api <UPDATE>
+http://localhost:5000/api/v1/profile
+
+
+
+**POSTS
+// get all post api <GET>
+http://localhost:5000/api/v1/posts 
+
+// get spicific post <GET>
+http://localhost:5000/api/v1/posts/:postID
+
+// get post's replays  <GET>
+http://localhost:5000/api/v1/posts/user/posts/:userID
+
+
+// add new post <POST>
+http://localhost:5000/api/v1/posts
+
+
+// delete post  <DELETE>
+http://localhost:5000/api/v1/posts/:postID
+
+
+
+**REPLAYS
+
+// get post's replays <GET>
+http://localhost:5000/api/v1/replay/:postID
+
+
+// post new Replay <POST>
+http://localhost:5000/api/v1/replay/:postID
+
+
+// delete replay <DELETE>
+http://localhost:5000/api/v1/replay/:replayID
+

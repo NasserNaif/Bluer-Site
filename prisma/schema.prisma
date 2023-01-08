@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @unique
+  email String @unique
+  password String 
+  profileName String?
+  profileBio String?
+  profileAvatar String?
+  joinDate DateTime @default(now())
+  role Role @default(USER)
+  posts Post[]
+  replays Replay[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+
+model Post {
+  id String @id @default(uuid())
+  title String
+  content String? 
+  image String? 
+  createDate DateTime @default(now())
+  likes Int?
+  replays Replay[]
+  userPost String 
+  userID User @relation(fields: [userPost],references: [id])
+}
+
+model Replay {
+  id String @id @default(uuid())
+  content String 
+  createDate DateTime @default(now())
+  likes Int?
+  post String
+  post_id Post @relation(fields: [post],references: [id])
+  userReplay String
+  userID User @relation(fields: [userReplay],references: [id])
+}
