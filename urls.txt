@@ -7,6 +7,9 @@ http://localhost:5000/api/v1/login/register
 // profile api <UPDATE>
 http://localhost:5000/api/v1/profile
 
+// get myProfile <GET>
+http://localhost:5000/api/v1/profile
+
 
 
 **POSTS
@@ -18,6 +21,9 @@ http://localhost:5000/api/v1/posts/:postID
 
 // get post's replays  <GET>
 http://localhost:5000/api/v1/posts/user/posts/:userID
+
+// get my posts <GET>
+http://localhost:5000/api/v1/posts/myposts
 
 
 // add new post <POST>

@@ -3,6 +3,7 @@ import {
   createPost,
   deletePost,
   getAllPosts,
+  getMyPosts,
   getSpecificPost,
   getUserPosts,
 } from "../controllers/postController";
@@ -14,6 +15,9 @@ const postRoute = express.Router();
 
 // get all posts
 postRoute.get(`/`, getAllPosts);
+
+// get my posts
+postRoute.get(`/myposts`, protect, getMyPosts);
 
 // get spicific post
 postRoute.get(`/:postid`, getSpecificPost);

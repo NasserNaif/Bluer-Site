@@ -35,3 +35,26 @@ export const updateProfile = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const myProfile = async (req: Request, res: Response) => {
+  try {
+    const { id } = res.locals.user as IUser;
+    const myProfile = await prisma.user.findUnique({
+      where: { id },
+      select: {
+        profileAvatar: true,
+        profileBio: true,
+        profileName: true,
+        username: true,
+        email: true,
+        posts: true,
+      },
+    });
+    return res.status(200).json(myProfile);
+  } catch (err) {
+    return res.status(500).json({
+      message: "sorry, server error !!!",
+      err,
+    });
+  }
+};

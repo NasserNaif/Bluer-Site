@@ -30,6 +30,20 @@ export const getAllPosts = async (req: Request, res: Response) => {
   }
 };
 
+export const getMyPosts = async (req: Request, res: Response) => {
+  try {
+    const user = res.locals.user as IUser;
+    const myPosts = await prisma.post.findFirst({
+      where: { userPost: user.id },
+    });
+    return res.status(200).json(myPosts);
+  } catch (err) {
+    return res.status(500).json({
+      message: "sorry, server error !!!",
+    });
+  }
+};
+
 export const getSpecificPost = async (req: Request, res: Response) => {
   try {
     const { postID } = req.params as getSpecificPostType;

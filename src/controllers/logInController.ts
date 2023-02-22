@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { logInType } from "../zodSchema/logInSchema";
+import { logInType, registerType } from "../zodSchema/logInSchema";
 import { prisma } from "../config/DB";
 import * as argon2 from "argon2";
 import * as jwt from "jsonwebtoken";
@@ -21,7 +21,7 @@ export const logIn = async (req: Request, res: Response) => {
       },
     });
 
-    if (!user) {
+    if (user.length < 1) {
       return res.status(300).json({
         message: "sorry username or password is not correct !",
       });
@@ -44,7 +44,6 @@ export const logIn = async (req: Request, res: Response) => {
       message: `welcome back ${user[0].profileName}`,
       token,
     });
-    
   } catch (err) {
     return res.status(500).json({
       message: "sorry, server error !",
@@ -54,14 +53,14 @@ export const logIn = async (req: Request, res: Response) => {
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const newUser = req.body as User;
-
+    const newUser = req.body as registerType;
+    console.log(newUser);
+    console.log(req.body.file);
     const isUserExsist = await prisma.user.findMany({
       where: {
         OR: [{ username: newUser.username }, { email: newUser.email }],
       },
     });
-    console.log(isUserExsist);
     if (isUserExsist.length >= 1) {
       return res.status(400).json({
         message: "sorry, but username or email is already exsist !",
@@ -76,6 +75,8 @@ export const register = async (req: Request, res: Response) => {
         email: newUser.email,
         password: newUser.password,
         profileName: newUser.username,
+        profileAvatar: newUser.profileAvatar,
+        profileBio: "",
       },
     });
 
@@ -88,4 +89,3 @@ export const register = async (req: Request, res: Response) => {
     });
   }
 };
-

@@ -11,10 +11,8 @@ export const profileSchema = z.object({
     profileBio: z.optional(
       z.string({ invalid_type_error: "Name must be string" })
     ),
-    profileAvatar: z.optional(z.string()),
+    profileAvatar: z.optional(z.any()),
   }),
 });
 
 export type profileType = z.infer<typeof profileSchema>["body"];
-
-

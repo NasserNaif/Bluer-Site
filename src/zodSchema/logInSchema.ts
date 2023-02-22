@@ -24,6 +24,7 @@ export const registerSchema = z.object({
       .string({ required_error: "password is required !" })
       .min(6, "password must be equal/more than 6"),
     email: z.string({ required_error: "email is required !" }).email(),
+    profileAvatar: z.any(),
   }),
 });
 export type registerType = z.infer<typeof registerSchema>["body"];
