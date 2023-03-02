@@ -33,6 +33,7 @@ function SmallScreenNav() {
         size="lg"
       />
       <Drawer
+      
         isOpen={isOpen}
         placement={"right"}
         onClose={onClose}
