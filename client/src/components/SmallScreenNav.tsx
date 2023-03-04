@@ -20,7 +20,7 @@ function SmallScreenNav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef: any = useRef();
   return (
-    <Flex h={"8vh"} align="center" boxShadow={"md"} p="3">
+    <Flex  h={"8vh"} align="center" boxShadow={"md"} p="3">
       <Text color={"blue.400"} fontWeight="bold" fontSize={"4xl"}>
         Bluer
       </Text>

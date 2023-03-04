@@ -54,8 +54,6 @@ export const logIn = async (req: Request, res: Response) => {
 export const register = async (req: Request, res: Response) => {
   try {
     const newUser = req.body as registerType;
-    console.log(newUser);
-    console.log(req.body.file);
     const isUserExsist = await prisma.user.findMany({
       where: {
         OR: [{ username: newUser.username }, { email: newUser.email }],

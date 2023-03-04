@@ -39,7 +39,7 @@ function RegisterComp() {
         seed: user.username,
       }).toDataUri();
 
-      setUser({ ...user, profileAvatar: av !== null ? av : "" });
+      setUser({ ...user, profileAvatar: av  });
 
       const request = await fetch(
         "http://localhost:5000/api/v1/login/register",
